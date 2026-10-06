@@ -65,8 +65,7 @@ def build() -> Path:
 
 <h1>Applied analytics &amp; data systems — portfolio summary</h1>
 <div class="sub"><b>Un Chi Kit</b> · Macau SAR · +853 6318 3022 · unchikit123@gmail.com</div>
-<div class="sub">MSc in Data Science (Artificial Intelligence Application), University of Macau · BSc Civil Engineering ·
-Macau SAR selection for the 46th WorldSkills Competition (Business Software Solutions), 2022</div>
+<div class="sub">MSc in Data Science (Artificial Intelligence Application), University of Macau · BSc Civil Engineering</div>
 
 <div class="kpis">
   <div><div class="v">23,162</div><div class="l">service contacts modelled</div></div>

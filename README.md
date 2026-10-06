@@ -106,5 +106,4 @@ portfolio/              two-page portfolio summary (PDF) for recruiters
 ## Contact
 
 **Un Chi Kit** · Macau SAR · unchikit123@gmail.com
-MSc in Data Science (Artificial Intelligence Application), University of Macau ·
-BSc Civil Engineering · Macau SAR selection for the 46th WorldSkills Competition (Business Software Solutions), 2022
+MSc in Data Science (Artificial Intelligence Application), University of Macau · BSc Civil Engineering
