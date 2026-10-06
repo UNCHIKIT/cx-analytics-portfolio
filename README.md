@@ -2,7 +2,7 @@
 
 **Two connected pieces of work built around one synthetic customer-service dataset: 23,162 contacts, 15,721 cases, 26 weeks, 5 channels.** Every number in this repository is reproducible from the included scripts — nothing is hand-written.
 
-> ### 中文摘要（給 HR 的 30 秒版）
+> ### 中文摘要
 > 我把 26 週、**23,162 通**客戶聯絡（15,721 個案、5 條服務渠道）建成一個客服營運分析系統：
 > ① 以 Power BI 建立 36 條量值的即時營運儀表板（SLA、首次解決率、處理時間、積壓帳齡、CSAT/CES/NPS、成本）；
 > ② 以 SPSS + Python 做統計檢定與驅動因子分析，找出真正影響客戶滿意度的因素。
