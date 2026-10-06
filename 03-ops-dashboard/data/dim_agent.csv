@@ -1,0 +1,43 @@
+﻿agent_id,agent_code,team,site,tenure_months
+1,AG001,Inbound Phone,Macau HQ,3
+2,AG002,Inbound Phone,Macau HQ,82
+3,AG003,Inbound Phone,Macau HQ,58
+4,AG004,Inbound Phone,Taipa Annex,12
+5,AG005,Email Desk,Macau HQ,4
+6,AG006,Chat Desk,Taipa Annex,41
+7,AG007,Email Desk,Macau HQ,65
+8,AG008,Email Desk,Taipa Annex,22
+9,AG009,Inbound Phone,Macau HQ,23
+10,AG010,Inbound Phone,Macau HQ,41
+11,AG011,Email Desk,Macau HQ,73
+12,AG012,Inbound Phone,Macau HQ,80
+13,AG013,Inbound Phone,Taipa Annex,58
+14,AG014,Chat Desk,Macau HQ,41
+15,AG015,Inbound Phone,Macau HQ,82
+16,AG016,Escalations,Macau HQ,12
+17,AG017,Inbound Phone,Macau HQ,15
+18,AG018,Chat Desk,Macau HQ,94
+19,AG019,Email Desk,Taipa Annex,83
+20,AG020,Inbound Phone,Macau HQ,75
+21,AG021,Chat Desk,Taipa Annex,79
+22,AG022,Inbound Phone,Remote,88
+23,AG023,Email Desk,Macau HQ,90
+24,AG024,Chat Desk,Remote,36
+25,AG025,Inbound Phone,Taipa Annex,6
+26,AG026,Chat Desk,Macau HQ,38
+27,AG027,Inbound Phone,Remote,34
+28,AG028,Chat Desk,Remote,84
+29,AG029,Inbound Phone,Macau HQ,71
+30,AG030,Chat Desk,Taipa Annex,42
+31,AG031,Inbound Phone,Macau HQ,71
+32,AG032,Email Desk,Macau HQ,93
+33,AG033,Email Desk,Macau HQ,81
+34,AG034,Inbound Phone,Macau HQ,64
+35,AG035,Inbound Phone,Macau HQ,1
+36,AG036,Email Desk,Macau HQ,73
+37,AG037,Inbound Phone,Taipa Annex,76
+38,AG038,Email Desk,Macau HQ,34
+39,AG039,Escalations,Macau HQ,76
+40,AG040,Inbound Phone,Taipa Annex,90
+41,AG041,Inbound Phone,Taipa Annex,40
+42,AG042,Email Desk,Macau HQ,73

@@ -1,0 +1,6 @@
+﻿queue,contacts,sla_pct,asa_sec,aht_sec,fcr_pct,csat,ces,nps,cost_per_contact
+Technical Support,6605,0.56,5173.69,344.03,0.61,4.01,4.89,13.4,13.6
+Billing,6229,0.57,5762.66,343.69,0.62,4.1,4.97,17.62,13.95
+Account Management,4528,0.6,7972.32,319.9,0.65,4.22,5.18,27.32,11.33
+Delivery & Logistics,3276,0.67,9556.49,316.3,0.64,3.97,4.74,9.73,11.23
+Complaints & Escalations,2524,0.57,4476.79,352.6,0.57,3.29,3.85,-34.55,15.71

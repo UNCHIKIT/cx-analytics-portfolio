@@ -1,0 +1,44 @@
+table dim_queue
+	lineageTag: c16067dc-6083-4cdd-a598-314e3e286ad0
+
+	column queue_id
+		dataType: int64
+		isHidden
+		isKey
+		lineageTag: fc973ece-8887-44f7-af50-c5b58586e2db
+		summarizeBy: sum
+		sourceColumn: queue_id
+
+	column queue
+		dataType: string
+		lineageTag: 5e25fa97-68b6-4e86-901b-f4d8e146b841
+		summarizeBy: none
+		sourceColumn: queue
+
+	column queue_zh
+		dataType: string
+		lineageTag: 8dec8f44-b14c-42cd-9191-0b1fdcafa544
+		summarizeBy: none
+		sourceColumn: queue_zh
+
+	column satisfaction_offset
+		dataType: double
+		isHidden
+		lineageTag: 603b2fb8-2b86-4f85-afc7-f9ee86f12718
+		summarizeBy: sum
+		sourceColumn: satisfaction_offset
+
+	partition dim_queue = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(DataFolder & "\dim_queue.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				Typed = Table.TransformColumnTypes(Promoted, {
+					{"queue_id", Int64.Type},
+					{"queue", type text},
+					{"queue_zh", type text},
+					{"satisfaction_offset", type number}
+				})
+			in
+				Typed

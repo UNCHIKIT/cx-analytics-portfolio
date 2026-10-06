@@ -1,0 +1,23 @@
+relationship 22f34bdd-5bcb-4fa5-80e3-951ec557dc17
+	fromColumn: fact_interaction.date_key
+	toColumn: dim_date.date_key
+
+relationship 6f8aa8b6-96f3-4faf-ab5e-d7f338872baa
+	fromColumn: fact_interaction.channel_id
+	toColumn: dim_channel.channel_id
+
+relationship baabcb97-c240-4bb2-acde-7213917a221b
+	fromColumn: fact_interaction.queue_id
+	toColumn: dim_queue.queue_id
+
+relationship e2d560bf-dedb-4c11-ae3a-91d2415d27cb
+	fromColumn: fact_interaction.agent_id
+	toColumn: dim_agent.agent_id
+
+relationship 6c82b977-f9c1-4c8c-802e-27666c458bef
+	fromColumn: fact_interaction.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship 88b6472f-38df-4668-9579-fd98f0da5037
+	fromColumn: fact_interaction.status
+	toColumn: dim_status.status

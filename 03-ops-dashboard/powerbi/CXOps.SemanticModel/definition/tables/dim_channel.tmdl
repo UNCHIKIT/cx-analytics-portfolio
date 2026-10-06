@@ -1,0 +1,58 @@
+table dim_channel
+	lineageTag: 46901874-2595-4c7b-acc8-ec4fffb2ef45
+
+	column channel_id
+		dataType: int64
+		isHidden
+		isKey
+		lineageTag: a9ce6eb1-a192-45e7-8cbe-64a22f4cf5e5
+		summarizeBy: sum
+		sourceColumn: channel_id
+
+	column channel
+		dataType: string
+		lineageTag: cc480242-7f3c-4186-861f-6db8e5d67c82
+		summarizeBy: none
+		sourceColumn: channel
+
+	column channel_zh
+		dataType: string
+		lineageTag: 6929dae7-a618-4772-88e4-475e1fd64242
+		summarizeBy: none
+		sourceColumn: channel_zh
+
+	column is_synchronous
+		dataType: boolean
+		lineageTag: c45a0ea0-d08f-4d74-ba7a-4192b8a3e9e8
+		summarizeBy: none
+		sourceColumn: is_synchronous
+
+	column unit_cost_mop
+		dataType: double
+		isHidden
+		lineageTag: c007fd95-6763-49e9-b019-0b2ee9afbc03
+		summarizeBy: sum
+		sourceColumn: unit_cost_mop
+
+	column sla_target_seconds
+		dataType: int64
+		lineageTag: caac09ba-3206-4d5f-8c41-5ccfa6423521
+		summarizeBy: sum
+		sourceColumn: sla_target_seconds
+
+	partition dim_channel = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(DataFolder & "\dim_channel.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				Typed = Table.TransformColumnTypes(Promoted, {
+					{"channel_id", Int64.Type},
+					{"channel", type text},
+					{"channel_zh", type text},
+					{"is_synchronous", type logical},
+					{"unit_cost_mop", type number},
+					{"sla_target_seconds", Int64.Type}
+				})
+			in
+				Typed

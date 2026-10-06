@@ -1,0 +1,6 @@
+﻿channel_id,channel,channel_zh,is_synchronous,unit_cost_mop,sla_target_seconds
+1,Phone,電話,True,22.0,60
+2,Email,電郵,False,9.0,14400
+3,Live Chat,線上對話,True,7.0,45
+4,Social Media,社交媒體,False,6.0,28800
+5,Web Form,網上表格,False,2.0,43200

@@ -1,0 +1,50 @@
+table dim_customer
+	lineageTag: 7c04ab6c-0123-4475-8b5b-5b6002a747a6
+
+	column customer_id
+		dataType: int64
+		isHidden
+		isKey
+		lineageTag: 0c839308-9357-43da-9d06-ab99ae9aedd5
+		summarizeBy: sum
+		sourceColumn: customer_id
+
+	column segment
+		dataType: string
+		lineageTag: 8e2bcf8d-bcda-4b29-9953-f4bdfdfb6298
+		summarizeBy: none
+		sourceColumn: segment
+
+	column region
+		dataType: string
+		lineageTag: 06dcfe3f-2b2a-48d1-8036-036fcaef08ae
+		summarizeBy: none
+		sourceColumn: region
+
+	column tenure_months
+		dataType: int64
+		lineageTag: 0c45fbf2-581f-4f2e-a70e-0c8ecf38e73a
+		summarizeBy: sum
+		sourceColumn: tenure_months
+
+	column is_new_customer
+		dataType: boolean
+		lineageTag: fa690a12-714b-49ae-9718-f809b30f2ffc
+		summarizeBy: none
+		sourceColumn: is_new_customer
+
+	partition dim_customer = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(DataFolder & "\dim_customer.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				Typed = Table.TransformColumnTypes(Promoted, {
+					{"customer_id", Int64.Type},
+					{"segment", type text},
+					{"region", type text},
+					{"tenure_months", Int64.Type},
+					{"is_new_customer", type logical}
+				})
+			in
+				Typed

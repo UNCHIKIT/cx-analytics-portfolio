@@ -1,0 +1,50 @@
+table dim_agent
+	lineageTag: d68ed351-3596-4a16-93cb-5b93fca0773e
+
+	column agent_id
+		dataType: int64
+		isHidden
+		isKey
+		lineageTag: 2e62bc46-1950-443a-be97-ddb2eb2eb42a
+		summarizeBy: sum
+		sourceColumn: agent_id
+
+	column agent_code
+		dataType: string
+		lineageTag: e07d7fac-4773-4b1b-8fb9-223c814f9b35
+		summarizeBy: none
+		sourceColumn: agent_code
+
+	column team
+		dataType: string
+		lineageTag: b930cee6-dc71-4e14-a148-31f40c5a6e66
+		summarizeBy: none
+		sourceColumn: team
+
+	column site
+		dataType: string
+		lineageTag: 1807afc1-7bb2-4378-bb8d-dae75dc11e1c
+		summarizeBy: none
+		sourceColumn: site
+
+	column tenure_months
+		dataType: int64
+		lineageTag: 71ba20b3-5fde-4210-8ed8-8c762f4c2482
+		summarizeBy: sum
+		sourceColumn: tenure_months
+
+	partition dim_agent = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(DataFolder & "\dim_agent.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				Typed = Table.TransformColumnTypes(Promoted, {
+					{"agent_id", Int64.Type},
+					{"agent_code", type text},
+					{"team", type text},
+					{"site", type text},
+					{"tenure_months", Int64.Type}
+				})
+			in
+				Typed

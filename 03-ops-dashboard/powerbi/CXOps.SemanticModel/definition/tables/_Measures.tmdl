@@ -1,0 +1,197 @@
+table _Measures
+	lineageTag: 70f8d6f9-3c54-4396-bb90-c805f53a1f49
+
+	column _
+		dataType: string
+		isHidden
+		lineageTag: ade4849e-fe76-443a-8c77-c4637e6f3729
+		summarizeBy: none
+		sourceColumn: _
+
+	measure Contacts = COUNTROWS ( fact_interaction )
+		formatString: #,##0
+		displayFolder: Volume
+		lineageTag: cf4a5aa8-3a19-4e59-a21a-b3e4ef132fb0
+
+	measure Cases = DISTINCTCOUNT ( fact_interaction[case_id] )
+		formatString: #,##0
+		displayFolder: Volume
+		lineageTag: f5be9be5-0649-4e0b-983a-195b54fda028
+
+	measure 'Contacts per case' = DIVIDE ( [Contacts], [Cases] )
+		formatString: 0.00
+		displayFolder: Volume
+		lineageTag: 06b20b5c-8713-4219-a22f-cf4a2b471e9a
+
+	measure 'Answered contacts' = CALCULATE ( [Contacts], fact_interaction[is_answered] = TRUE () )
+		formatString: #,##0
+		displayFolder: Volume
+		lineageTag: d9efae19-c14b-42d8-b129-8f53db176466
+
+	measure 'Abandoned contacts' = CALCULATE ( [Contacts], fact_interaction[is_abandoned] = TRUE () )
+		formatString: #,##0
+		displayFolder: Volume
+		lineageTag: fa00381e-087e-4348-abf8-c9f99ce7a08f
+
+	measure 'Closing contacts' = CALCULATE ( [Contacts], fact_interaction[is_closing_contact] = TRUE () )
+		formatString: #,##0
+		displayFolder: Volume
+		lineageTag: eed02ef6-26f7-4154-8418-e8c13f58a644
+
+	measure 'Responded surveys' = CALCULATE ( [Contacts], fact_interaction[responded] = TRUE () )
+		formatString: #,##0
+		displayFolder: Volume
+		lineageTag: 367f373a-b415-4d3e-b652-c03f6e5d777d
+
+	measure 'Abandonment %' = DIVIDE ( [Abandoned contacts], [Contacts] )
+		formatString: 0.0%
+		displayFolder: Volume
+		lineageTag: 41000565-9d07-497d-8e1f-3f5c5c434ba4
+
+	measure 'Repeat contact %' = DIVIDE ( CALCULATE ( [Contacts], fact_interaction[contact_seq] > 1 ), [Contacts] )
+		formatString: 0.0%
+		displayFolder: Volume
+		lineageTag: 7cb25467-7660-468b-9395-97f171f0f35f
+
+	measure 'SLA %' = DIVIDE ( CALCULATE ( [Contacts], fact_interaction[is_within_sla] = TRUE () ), [Answered contacts] )
+		formatString: 0.0%
+		displayFolder: Service level
+		lineageTag: e1f686a0-8f7b-4c85-874a-399b6be49293
+
+	measure 'ASA seconds' = CALCULATE ( AVERAGE ( fact_interaction[wait_seconds] ), dim_channel[is_synchronous] = TRUE (), fact_interaction[is_answered] = TRUE () )
+		formatString: #,##0
+		displayFolder: Service level
+		lineageTag: 9c338041-a0a0-4fe5-bf38-44daf4119481
+
+	measure 'First response hours' = CALCULATE ( DIVIDE ( AVERAGE ( fact_interaction[wait_seconds] ), 3600 ), dim_channel[is_synchronous] = FALSE (), fact_interaction[is_answered] = TRUE () )
+		formatString: 0.0 "h"
+		displayFolder: Service level
+		lineageTag: 99372022-759c-442a-b142-a7fc0ce889de
+
+	measure 'AHT seconds' = CALCULATE ( AVERAGE ( fact_interaction[handle_seconds] ), fact_interaction[is_answered] = TRUE () )
+		formatString: #,##0
+		displayFolder: Service level
+		lineageTag: 2b03c18f-ad1b-462f-ac0e-4e9e4577961c
+
+	measure 'AHT minutes' = DIVIDE ( [AHT seconds], 60 )
+		formatString: 0.0
+		displayFolder: Service level
+		lineageTag: 1312a5b5-c3a4-4de4-bb9e-613319a33afb
+
+	measure 'FCR %' = DIVIDE ( CALCULATE ( DISTINCTCOUNT ( fact_interaction[case_id] ), fact_interaction[is_first_contact_resolved] = TRUE () ), [Cases] )
+		formatString: 0.0%
+		displayFolder: Resolution
+		lineageTag: c6ec1c54-258b-4d5e-8801-0b3c7a3058a7
+
+	measure 'Escalation %' = DIVIDE ( CALCULATE ( DISTINCTCOUNT ( fact_interaction[case_id] ), fact_interaction[is_escalated] = TRUE () ), [Cases] )
+		formatString: 0.0%
+		displayFolder: Resolution
+		lineageTag: 8f056a32-455e-4f2d-abea-743415e38059
+
+	measure 'Avg transfers' = CALCULATE ( AVERAGE ( fact_interaction[transfer_count] ), fact_interaction[is_answered] = TRUE () )
+		formatString: 0.00
+		displayFolder: Resolution
+		lineageTag: 4d33e494-30d4-43b3-a0b6-d08315b4ee81
+
+	measure 'Response rate %' = DIVIDE ( [Responded surveys], [Closing contacts] )
+		formatString: 0.0%
+		displayFolder: Experience
+		lineageTag: c5bcc96f-beb9-46e1-80d6-211415d18420
+
+	measure 'CSAT top-box %' = DIVIDE ( CALCULATE ( [Contacts], fact_interaction[csat_score] >= 4 ), [Responded surveys] )
+		formatString: 0.0%
+		displayFolder: Experience
+		lineageTag: 92406186-7957-44cb-9d94-d0a5eb729fc6
+
+	measure 'CSAT mean' = CALCULATE ( AVERAGE ( fact_interaction[csat_score] ), fact_interaction[responded] = TRUE () )
+		formatString: 0.00
+		displayFolder: Experience
+		lineageTag: de800f72-7476-4206-9261-7e0a228d76af
+
+	measure 'CES mean' = CALCULATE ( AVERAGE ( fact_interaction[ces_score] ), fact_interaction[responded] = TRUE () )
+		formatString: 0.00
+		displayFolder: Experience
+		lineageTag: 032014d8-01fe-4b73-9ff7-4f3f6b9c99ff
+
+	measure 'CES % easy' = DIVIDE ( CALCULATE ( [Contacts], fact_interaction[ces_score] >= 5 ), [Responded surveys] )
+		formatString: 0.0%
+		displayFolder: Experience
+		lineageTag: 7d142071-76b4-4873-bdb3-04bf97e9c8a7
+
+	measure Promoters = CALCULATE ( [Contacts], fact_interaction[responded] = TRUE (), fact_interaction[nps_score] >= 9 )
+		formatString: #,##0
+		displayFolder: Experience
+		lineageTag: d3446741-2563-4eca-8a34-51ce3b6d1457
+
+	measure Passives = CALCULATE ( [Contacts], fact_interaction[responded] = TRUE (), fact_interaction[nps_score] >= 7 && fact_interaction[nps_score] <= 8 )
+		formatString: #,##0
+		displayFolder: Experience
+		lineageTag: fd6c4f41-b7df-42f4-a957-e6d7dd27c092
+
+	measure Detractors = CALCULATE ( [Contacts], fact_interaction[responded] = TRUE (), fact_interaction[nps_score] <= 6 )
+		formatString: #,##0
+		displayFolder: Experience
+		lineageTag: 2dff84a2-773c-443b-a47e-00e960e6b52d
+
+	measure NPS = DIVIDE ( [Promoters] - [Detractors], [Responded surveys] ) * 100
+		formatString: +0;-0;0
+		displayFolder: Experience
+		lineageTag: 156c14bb-0509-442d-ac9c-6a4d1c51c71b
+
+	measure 'Cost per contact' = DIVIDE ( SUM ( fact_interaction[cost_mop] ), [Contacts] )
+		formatString: "MOP " #,##0.00
+		displayFolder: Cost
+		lineageTag: 7df53ad0-57e7-4e13-a06d-63ea6ee92a3d
+
+	measure 'Cost per case' = DIVIDE ( SUM ( fact_interaction[cost_mop] ), [Cases] )
+		formatString: "MOP " #,##0.00
+		displayFolder: Cost
+		lineageTag: 5f9cfd07-d7b2-4ab9-b199-ea8834cb18ed
+
+	measure 'Total cost' = SUM ( fact_interaction[cost_mop] )
+		formatString: "MOP " #,##0
+		displayFolder: Cost
+		lineageTag: d7ec6bdb-47d9-4479-b9d2-fc3220758c69
+
+	measure 'Open backlog' = CALCULATE ( [Contacts], fact_interaction[is_open] = TRUE () )
+		formatString: #,##0
+		displayFolder: Backlog
+		lineageTag: aa76eb94-501e-4371-a262-61a2756fa9a7
+
+	measure 'Oldest open days' = CALCULATE ( MAX ( fact_interaction[age_days] ), fact_interaction[is_open] = TRUE () )
+		formatString: #,##0
+		displayFolder: Backlog
+		lineageTag: f6dd6220-a1a0-4d76-9dd5-21f515eab981
+
+	measure 'Backlog older than 7 days' = CALCULATE ( [Contacts], fact_interaction[is_open] = TRUE (), FILTER ( fact_interaction, DATEDIFF ( fact_interaction[start_ts], TODAY (), DAY ) > 7 ) )
+		formatString: #,##0
+		displayFolder: Backlog
+		lineageTag: ecf39d69-6467-488f-98d6-530423cdced8
+
+	measure 'SLA % (last 4 weeks)' = CALCULATE ( [SLA %], DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -28, DAY ) )
+		formatString: 0.0%
+		displayFolder: Time intelligence
+		lineageTag: 820e22e9-7127-4df4-9fdc-e4e5f32bef4a
+
+	measure 'CSAT mean (last 4 weeks)' = CALCULATE ( [CSAT mean], DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -28, DAY ) )
+		formatString: 0.00
+		displayFolder: Time intelligence
+		lineageTag: f1184e5f-54b3-4a05-a284-b3d9d04abbfe
+
+	measure 'Contacts 7-day average' = AVERAGEX ( DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -7, DAY ), [Contacts] )
+		formatString: #,##0
+		displayFolder: Time intelligence
+		lineageTag: 72a315cf-44e6-41bc-9ca1-2b1f7aa71adb
+
+	measure 'Contacts vs previous week' = VAR CurrentWeek = [Contacts] VAR PrevWeek = CALCULATE ( [Contacts], DATEADD ( dim_date[date], -7, DAY ) ) RETURN DIVIDE ( CurrentWeek - PrevWeek, PrevWeek )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Time intelligence
+		lineageTag: c34b3c09-1ab5-4f67-83ec-1f9313b55519
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+				Source = #table({"_"}, {{"measures"}})
+			in
+				Source

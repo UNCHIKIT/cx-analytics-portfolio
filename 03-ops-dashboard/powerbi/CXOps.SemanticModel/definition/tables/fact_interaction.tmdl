@@ -1,0 +1,264 @@
+table fact_interaction
+	lineageTag: dde44ac4-8bcd-4b4b-b308-7f2470c1f3ad
+
+	column interaction_id
+		dataType: string
+		lineageTag: bbff4147-1d14-4cc0-b3b3-06587259215a
+		summarizeBy: none
+		sourceColumn: interaction_id
+
+	column case_id
+		dataType: int64
+		isHidden
+		lineageTag: 51924f40-2a7e-44f5-965e-bfea11ae1539
+		summarizeBy: sum
+		sourceColumn: case_id
+
+	column customer_id
+		dataType: int64
+		isHidden
+		lineageTag: 4e46572e-6ce8-4cf0-a39c-2b3c398876d1
+		summarizeBy: sum
+		sourceColumn: customer_id
+
+	column agent_id
+		dataType: int64
+		isHidden
+		lineageTag: a9e27041-8f9a-4e91-9311-9286167a3470
+		summarizeBy: sum
+		sourceColumn: agent_id
+
+	column channel_id
+		dataType: int64
+		isHidden
+		lineageTag: 7322885a-c84e-4978-a3a0-1738e0855af2
+		summarizeBy: sum
+		sourceColumn: channel_id
+
+	column queue_id
+		dataType: int64
+		isHidden
+		lineageTag: 91b8592f-811d-4ef9-96c9-d97837181c3f
+		summarizeBy: sum
+		sourceColumn: queue_id
+
+	column date_key
+		dataType: int64
+		isHidden
+		lineageTag: 030d15da-38b2-4065-b592-5ef693dd056a
+		summarizeBy: sum
+		sourceColumn: date_key
+
+	column start_ts
+		dataType: dateTime
+		lineageTag: de83e79c-491b-4448-b649-48b0e7d9257e
+		summarizeBy: none
+		sourceColumn: start_ts
+
+	column end_ts
+		dataType: dateTime
+		lineageTag: 0629d6f2-528c-4907-935b-347ab3f7832e
+		summarizeBy: none
+		sourceColumn: end_ts
+
+	column week_index
+		dataType: int64
+		lineageTag: 9f3b0b38-a693-46e9-b80c-b96eaa82317e
+		summarizeBy: sum
+		sourceColumn: week_index
+
+	column hour_of_day
+		dataType: int64
+		lineageTag: 358e43b0-7fa0-43a0-8767-8feef26088ef
+		summarizeBy: sum
+		sourceColumn: hour_of_day
+
+	column contact_seq
+		dataType: int64
+		isHidden
+		lineageTag: 484f79c4-2ddb-4f8a-aaf9-ef71d21ff4ef
+		summarizeBy: sum
+		sourceColumn: contact_seq
+
+	column case_contact_count
+		dataType: int64
+		isHidden
+		lineageTag: f96ccb6c-1ec3-420e-9f92-f9bc75b8b95c
+		summarizeBy: sum
+		sourceColumn: case_contact_count
+
+	column is_first_contact_resolved
+		dataType: boolean
+		lineageTag: 09867194-0169-45f0-89c2-b9bae34ae87d
+		summarizeBy: none
+		sourceColumn: is_first_contact_resolved
+
+	column is_repeat_contact
+		dataType: boolean
+		lineageTag: 7a555fca-b735-4075-8c84-d1422658d597
+		summarizeBy: none
+		sourceColumn: is_repeat_contact
+
+	column is_answered
+		dataType: boolean
+		lineageTag: ee24c115-e010-4756-8ac3-2f839799c214
+		summarizeBy: none
+		sourceColumn: is_answered
+
+	column is_abandoned
+		dataType: boolean
+		lineageTag: fc37e09e-d308-4159-a5ef-34f514af4e6d
+		summarizeBy: none
+		sourceColumn: is_abandoned
+
+	column is_open
+		dataType: boolean
+		lineageTag: a2838259-0c98-41b3-87e1-6ba853a7b789
+		summarizeBy: none
+		sourceColumn: is_open
+
+	column status
+		dataType: string
+		lineageTag: 833d5a95-8048-442f-af18-8fa248a05ceb
+		summarizeBy: none
+		sourceColumn: status
+
+	column wait_seconds
+		dataType: int64
+		lineageTag: 527cf645-485f-4e86-8c57-2aaa39f076a6
+		summarizeBy: sum
+		sourceColumn: wait_seconds
+
+	column talk_seconds
+		dataType: int64
+		lineageTag: 5f6d6fca-224a-44d7-859c-5d00cc1cf9cd
+		summarizeBy: sum
+		sourceColumn: talk_seconds
+
+	column wrap_seconds
+		dataType: int64
+		lineageTag: 3a61febf-fc1b-4e20-9953-3702663a69e8
+		summarizeBy: sum
+		sourceColumn: wrap_seconds
+
+	column handle_seconds
+		dataType: int64
+		lineageTag: e75f60f7-91a3-46d1-a3d5-8d7c1e1b99ae
+		summarizeBy: sum
+		sourceColumn: handle_seconds
+
+	column transfer_count
+		dataType: int64
+		lineageTag: b3cfa5b5-9bd3-41a8-b82c-b80648c7953b
+		summarizeBy: sum
+		sourceColumn: transfer_count
+
+	column is_escalated
+		dataType: boolean
+		lineageTag: d139ffe9-c3f0-4744-baf2-cedb5734c383
+		summarizeBy: none
+		sourceColumn: is_escalated
+
+	column sla_target_seconds
+		dataType: int64
+		isHidden
+		lineageTag: fde49527-4109-4d4f-b8bc-1b662c5d6885
+		summarizeBy: sum
+		sourceColumn: sla_target_seconds
+
+	column is_within_sla
+		dataType: boolean
+		lineageTag: 7cf98483-4ba0-4421-b9c7-efe944b685bb
+		summarizeBy: none
+		sourceColumn: is_within_sla
+
+	column age_days
+		dataType: double
+		lineageTag: 8ca89311-0604-441c-a2a4-27ab7bbefd5d
+		summarizeBy: sum
+		sourceColumn: age_days
+
+	column cost_mop
+		dataType: double
+		lineageTag: 7f83835f-3ea4-4692-afd5-cf45880c7f15
+		summarizeBy: sum
+		sourceColumn: cost_mop
+
+	column responded
+		dataType: boolean
+		lineageTag: 9eb927e3-fd93-46f9-8797-7bc088e571d6
+		summarizeBy: none
+		sourceColumn: responded
+
+	column csat_score
+		dataType: int64
+		lineageTag: c43035dd-3748-43b0-8973-b3b0a3b9ece6
+		summarizeBy: sum
+		sourceColumn: csat_score
+
+	column ces_score
+		dataType: int64
+		lineageTag: 51f441b3-3842-4db2-bca4-52bf73b19d58
+		summarizeBy: sum
+		sourceColumn: ces_score
+
+	column nps_score
+		dataType: int64
+		lineageTag: 544af576-1281-4b89-b62d-b0ff44471195
+		summarizeBy: sum
+		sourceColumn: nps_score
+
+	column is_closing_contact = fact_interaction[contact_seq] = fact_interaction[case_contact_count]
+		dataType: boolean
+		isHidden
+		lineageTag: dc8ee6b7-6b2d-4bd8-a1d1-bc050627cc46
+		summarizeBy: none
+
+	column 'Open age days (live)' = IF ( fact_interaction[is_open], DATEDIFF ( fact_interaction[start_ts], TODAY (), DAY ) )
+		dataType: int64
+		lineageTag: c8c6aa55-8c52-4935-be3d-387d08dfbd60
+		summarizeBy: none
+
+	partition fact_interaction = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(DataFolder & "\fact_interaction.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				Typed = Table.TransformColumnTypes(Promoted, {
+					{"interaction_id", type text},
+					{"case_id", Int64.Type},
+					{"customer_id", Int64.Type},
+					{"agent_id", Int64.Type},
+					{"channel_id", Int64.Type},
+					{"queue_id", Int64.Type},
+					{"date_key", Int64.Type},
+					{"start_ts", type datetime},
+					{"end_ts", type datetime},
+					{"week_index", Int64.Type},
+					{"hour_of_day", Int64.Type},
+					{"contact_seq", Int64.Type},
+					{"case_contact_count", Int64.Type},
+					{"is_first_contact_resolved", type logical},
+					{"is_repeat_contact", type logical},
+					{"is_answered", type logical},
+					{"is_abandoned", type logical},
+					{"is_open", type logical},
+					{"status", type text},
+					{"wait_seconds", Int64.Type},
+					{"talk_seconds", Int64.Type},
+					{"wrap_seconds", Int64.Type},
+					{"handle_seconds", Int64.Type},
+					{"transfer_count", Int64.Type},
+					{"is_escalated", type logical},
+					{"sla_target_seconds", Int64.Type},
+					{"is_within_sla", type logical},
+					{"age_days", type number},
+					{"cost_mop", type number},
+					{"responded", type logical},
+					{"csat_score", Int64.Type},
+					{"ces_score", Int64.Type},
+					{"nps_score", Int64.Type}
+				})
+			in
+				Typed

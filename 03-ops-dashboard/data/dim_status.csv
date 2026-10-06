@@ -1,0 +1,6 @@
+﻿status,status_zh,is_open,is_abandoned
+Resolved,已解決,False,False
+Closed,已結案,False,False
+Open,待處理,True,False
+Pending,待覆,True,False
+Abandoned,放棄,False,True

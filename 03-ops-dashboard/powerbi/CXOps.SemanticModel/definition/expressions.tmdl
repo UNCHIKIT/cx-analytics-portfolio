@@ -1,0 +1,1 @@
+expression DataFolder = "D:\cx-analytics-portfolio\03-ops-dashboard\data" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]

@@ -1,0 +1,42 @@
+table dim_status
+	lineageTag: 369fc68f-bcf4-4002-a8c5-313d1dbde4d0
+
+	column status
+		dataType: string
+		isKey
+		lineageTag: 5bd5511c-3cd1-4e28-a93b-4d654ac72a84
+		summarizeBy: none
+		sourceColumn: status
+
+	column status_zh
+		dataType: string
+		lineageTag: a5c379f8-9d05-41d4-b02b-cc89717f75e8
+		summarizeBy: none
+		sourceColumn: status_zh
+
+	column is_open
+		dataType: boolean
+		lineageTag: d1b5bed8-8832-4202-959d-1911f0de1ad6
+		summarizeBy: none
+		sourceColumn: is_open
+
+	column is_abandoned
+		dataType: boolean
+		lineageTag: 301e7d6e-24f0-475c-968f-5972c0ca53df
+		summarizeBy: none
+		sourceColumn: is_abandoned
+
+	partition dim_status = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(DataFolder & "\dim_status.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				Typed = Table.TransformColumnTypes(Promoted, {
+					{"status", type text},
+					{"status_zh", type text},
+					{"is_open", type logical},
+					{"is_abandoned", type logical}
+				})
+			in
+				Typed

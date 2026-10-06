@@ -1,0 +1,23 @@
+model Model
+	culture: zh-TW
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: zh-MO
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref cultureInfo zh-TW
+
+ref table fact_interaction
+ref table dim_date
+ref table dim_channel
+ref table dim_queue
+ref table dim_agent
+ref table dim_customer
+ref table dim_status
+ref table _Measures

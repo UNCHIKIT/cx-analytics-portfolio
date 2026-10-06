@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "CXOps"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5c740a3b-692a-4191-9924-b8207f9bfbb2"
+  }
+}
